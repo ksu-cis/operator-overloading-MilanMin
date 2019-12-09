@@ -17,12 +17,80 @@ namespace VectorMath
             Z = z;
         }
 
+        public override string ToString()
+        {
+            return $"<{X}, {Y}, {Z}>";
+        }
+
         // Vector Addition
+        public static Vector3 Add(Vector3 a, Vector3 b)
+        {
+            return new Vector3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
+        }
+
+        public void Add(Vector3 other)
+        {
+            this.X += other.X;
+            this.Y += other.Y;
+            this.Z += other.Z;
+        }
+
+        public static Vector3 operator +(Vector3 a, Vector3 b)
+        {
+            return Add(a, b);
+        }
 
         // Vector Subtraction 
 
+        public static Vector3 Subtract(Vector3 a, Vector3 b)
+        {
+            return new Vector3(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+        }
+
+        public static Vector3 operator -(Vector3 a, Vector3 b)
+        {
+            return Subtract(a, b);
+        }
+
+
         // Vector Scaling 
 
+        public static Vector3 operator *(double s, Vector3 v)
+        {
+            return new Vector3(s * v.X, s * v.Y, s * v.Z);
+        }
+
+        public static Vector3 operator *(Vector3 v, double s)
+        {
+            return (s * v);
+        }
+
         // Vector Comparison
+
+        public static bool operator ==(Vector3 a, Vector3 b)
+        {
+            if(a.X == b.X && a.Y == b.Y && a.Z == b.Z)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool operator !=(Vector3 a, Vector3 b)
+        {
+            return !(a == b);
+        }
+
+        public static readonly Vector3 Zero = new Vector3(0, 0, 0);
+
+        public static bool operator true(Vector3 a)
+        {
+            return Vector3.Zero != a;
+        }
+
+        public static bool operator false(Vector3 a)
+        {
+            return Vector3.Zero == a;
+        }
     }
 }
